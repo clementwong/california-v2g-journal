@@ -1,0 +1,6 @@
+data/synthetic_vehicle_usage/
+*.parquet
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
