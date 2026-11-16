@@ -1,0 +1,464 @@
+%Version 3.1 December 2024
+% See section 11 of the User Manual for version history
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+
+%%=======================================================%%
+%% to print line numbers in the margin use lineno option %%
+%%=======================================================%%
+
+%%\documentclass[lineno,pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%=========================================================================================%%
+%% the documentclass is set to pdflatex as default. You can delete it if not appropriate.  %%
+%%=========================================================================================%%
+
+%%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove Numbered in the optional parenthesis. 
+%%The option is available for: sn-basic.bst, sn-chicago.bst%  
+ 
+%%\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+\documentclass[pdflatex,sn-nature]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
+%%\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+%%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[pdflatex,sn-vancouver-num]{sn-jnl}% Vancouver Numbered Reference Style
+%%\documentclass[pdflatex,sn-vancouver-ay]{sn-jnl}% Vancouver Author Year Reference Style
+%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style
+%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+
+%%%% Standard Packages
+%%<additional latex packages if required can be included here>
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{lineno}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{multicol}
+
+
+
+\usepackage{amsmath}
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+%%%%
+
+%%%%%=============================================================================%%%%
+%%%%  Remarks: This template is provided to aid authors with the preparation
+%%%%  of original research articles intended for submission to journals published 
+%%%%  by Springer Nature. The guidance has been prepared in partnership with 
+%%%%  production teams to conform to Springer Nature technical requirements. 
+%%%%  Editorial and presentation requirements differ among journal portfolios and 
+%%%%  research disciplines. You may find sections in this template are irrelevant 
+%%%%  to your work and are empowered to omit any such section if allowed by the 
+%%%%  journal you intend to submit to. The submission guidelines and policies 
+%%%%  of the journal take precedence. A detailed User Manual is available in the 
+%%%%  template package for technical guidance.
+%%%%%=============================================================================%%%%
+
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+% Custom command for "Supplementary Notes" instead of Sections
+\newcounter{supnote}
+\newcommand{\supnote}[1]{%
+    \refstepcounter{supnote}%
+    \section*{Supplementary Note \thesupnote: #1}%
+    \addcontentsline{toc}{section}{Supplementary Note \thesupnote}%
+}
+
+\usepackage{caption}
+
+% Define the text of the label
+\DeclareCaptionLabelFormat{supplementary}{Supplementary Figure #2}
+\DeclareCaptionLabelFormat{supptable}{Supplementary Table #2}
+
+% Apply the formatting: bold label, period separator
+\captionsetup[figure]{
+    labelformat=supplementary, 
+    labelfont=bf, 
+    labelsep=period
+}
+\captionsetup[table]{
+    labelformat=supptable, 
+    labelfont=bf, 
+    labelsep=period
+}
+
+% Keep the numbering simple for cross-referencing
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,     % All internal links
+    citecolor=black,     % Bibliographic citations
+    filecolor=black,     % External files
+    urlcolor=black,      % Web links
+    breaklinks=true      % Allows links to wrap over lines
+}
+
+\begin{document}
+
+\title{
+  \begin{center}
+    Supplementary Information for \\
+    \textbf{The potential and viability of V2G for California BEV drivers}
+  \end{center}
+}
+% \title{Supplementary Information for \\ \textbf{The potential and viability of V2G for California BEV drivers}}
+
+%%=============================================================%%
+%% GivenName	-> \fnm{Joergen W.}
+%% Particle	-> \spfx{van der} -> surname prefix
+%% FamilyName	-> \sur{Ploeg}
+%% Suffix	-> \sfx{IV}
+%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
+%%  \sfx{IV}}\email{iauthor@gmail.com}
+%%=============================================================%%
+
+\author*[1]{\fnm{Clement} \sur{Wong}}\email{clemwong@umich.edu}
+
+\author[2]{\fnm{Amalie} \sur{Trewartha}}\email{amalie.trewartha@tri.global}
+\equalcont{These authors contributed equally to this work.}
+
+\author[2]{\fnm{Steven B.} \sur{Torrisi}}\email{steven.torrisi@tri.global}
+\equalcont{These authors contributed equally to this work.}
+
+\author[3]{\fnm{Alexandre} \sur{Filipowicz}}\email{alsfilip@gmail.com}
+\equalcont{These authors contributed equally to this work.}
+
+\affil*[1]{\orgdiv{Mechanical Engineering}, \orgname{University of Michigan}, \orgaddress{\street{2350 Hayward}, \city{Ann Arbor}, \postcode{48109}, \state{MI}, \country{USA}}}
+
+\affil[2]{\orgdiv{Energy \& Materials}, \orgname{Toyota Research Institute}, \orgaddress{\street{4440 El Camino Real}, \city{Los Altos}, \postcode{94022}, \state{State}, \country{USA}}}
+
+\affil[3]{\orgdiv{Human-Centered AI}, \orgname{Toyota Research Institute}, \orgaddress{\street{4440 El Camino Real}, \city{Los Altos}, \postcode{94022}, \state{CA}, \country{USA}}}
+
+%%==================================%%
+%% Sample for unstructured abstract %%
+%%==================================%%
+\linenumbers
+
+
+
+%%\pacs[JEL Classification]{D8, H51}
+
+%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
+
+\maketitle
+
+
+
+
+\supnote{Transforming battery model to be dynamic}
+\label{sec: dynamic_battery model}
+
+Gasper et al. proposed a semi-empirical model, outlined in Equation \ref{first_equation}, to predict the capacity for four commercial large-format lithium-ion batteries ($\text{LFP}|\text{Gr}$, $\text{NMC}|\text{Gr~A}$, $\text{NMC}|\text{Gr~B1}$, and $\text{NMC}|\text{Gr~B2}$). The four batteries varied in chemistry, design, and capacity (see \cite{gasper2023degradation} for specifications). Their model separates the total capacity loss into two components: calendar aging and cycle aging.
+
+
+\begin{equation}
+\label{first_equation}
+\begin{aligned}
+q &= q_0 - q_{\text{Loss}}, \qquad q_{\text{Loss}} = q_{\text{Loss,Cal}} + q_{\text{Loss,Cyc}} \\
+q_{\text{Loss,Cal}} &= p_1 \cdot \exp\left(\frac{p_2}{T}\right) \cdot \exp\left(\frac{p_3 U_a (\text{SOC})}{T}\right) \cdot t^{p_4} \\
+U_a(\text{SOC}) &= 0.6379 + 0.5416 \exp\left(-305.53 \cdot (0.0085 + 0.7715 \cdot \text{SOC})\right) \\
+&\quad + 0.044 \tanh\left(\frac{-(0.0085 + 0.7715 \cdot \text{SOC}) - 0.1958}{0.1088} \right) \\
+&\quad - 0.1978 \tanh\left(\frac{(0.0085 + 0.7715 \cdot \text{SOC}) - 1.0571}{0.0854} \right) \\
+&\quad - 0.6875 \tanh\left(\frac{(0.0085 + 0.7715 \cdot \text{SOC}) + 0.0117}{0.0529} \right) \\
+&\quad - 0.0175 \tanh\left(\frac{(0.0085 + 0.7715 \cdot \text{SOC}) - 0.5692}{0.0875} \right)\\
+q_{\text{Loss,Cyc}} &= \left(p_5 + p_6 \cdot \text{DOD} + p_7 \cdot C_{\text{rate}}\right) \cdot \left(\exp\left(\frac{p_8}{T}\right) + \exp\left(\frac{-p_9}{T}\right)\right) \cdot \text{EFC}^{p_{10}}
+\end{aligned}
+\end{equation}
+
+Here, $q$ is the remaining capacity, $q_0$ is the initial capacity, and $q_{\text{Loss}}$ is the total capacity loss, composed of calendar aging ($q_{\text{Loss,Cal}}$) and cycle aging ($q_{\text{Loss,Cyc}}$). Calendar aging is a function of time ($t$), temperature ($T$), and graphite-to-reference potential ($U_a$), which depends on the state of charge (SOC). Cycle aging is a function of depth of discharge (DOD), C-rate, temperature ($T$), and the total number of equivalent full cycles (EFC). Parameters $p_1, \dots, p_{10}$ are fitted to accelerated calendar- and cycle-aging test data for the four batteries. 
+
+Gasper's model (Equation \ref{first_equation}) can only be implemented over standard testing cycles (i.e., fully charging/discharging profiles with fixed current). To make the model applicable to real-world electric vehicle usage, we reformulated it to accept time-varying C-rate and SOC inputs as shown in Equation \ref{2_equation}. The expressions for DOD and EFC were reformulated as functions of SOC and C-rate ($\text{EFC}= \int_0^t C_\text{rate} (\tau)d\tau$, $\text{DOD}= 1-\text{SOC}$).
+
+\begin{equation}
+\label{2_equation}
+\begin{aligned}
+q(t) &= q_0 - \left( q_{\text{Loss,Cal}}(t) + q_{\text{Loss,Cyc}}(t) \right) \\
+q_{\text{Loss,Cal}}(t) &= p_1 \cdot \exp\left(\frac{p_2}{T(t)}\right) \cdot \exp\left(\frac{p_3 U_a(\text{SOC}(t))}{T(t)}\right) \cdot t^{p_4}\\
+q_{\text{Loss,Cyc}}(t) &= \left(p_5 + p_6 \cdot \left(1-\text{SOC}(t)\right) + p_7 \cdot C_{\text{rate}}(t)\right) \\
+&\quad \cdot \left(\exp\left(\frac{p_8}{T(t)}\right) + \exp\left(\frac{-p_9}{T(t)}\right)\right) \cdot \left(\int_{0}^{t} C_{\text{rate}}(\tau) \, d\tau\right)^{p_{10}}
+\end{aligned}
+\end{equation}
+
+
+
+For each vehicle, we assumed temperature to be constant over time, given the relatively mild climate variability in California. Accordingly, temperature was approximated as the time-averaged battery pack temperature over the four-month period:
+\begin{equation}
+\label{eq:time_averaged_temperature}
+T(t) \approx T_{\mathrm{avg}} = \frac{1}{t_N - t_0} \sum_{i=0}^{N-1} \frac{ T(t_i) + T(t_{i+1}) }{2} \left( t_{i+1} - t_i \right),
+\end{equation}
+where $t_0$ and $t_N$ denote the initial and final instances of times, respectively.
+
+
+In addition, for each vehicle, we assumed the graphite-to-reference potential to be constant over time, as our vehicle-usage data indicate that the majority of vehicles operated within a SOC range over which $U_a$ exhibits low variability. Accordingly, the graphite-to-reference potential was approximated as the value corresponding to the time-averaged SOC over the four-month observation period:
+\begin{equation}
+\label{eq:time_averaged_graphite_potential}
+\begin{aligned}
+U_a(\text{SOC}(t)) &\approx U_a(\text{SOC}_{\mathrm{avg}}) \\
+\text{where } \quad \text{SOC}_{\mathrm{avg}} &= \frac{1}{t_N - t_0} \sum_{i=0}^{N-1} \frac{ \text{SOC}(t_i) + \text{SOC}(t_{i+1}) }{2} \left( t_{i+1} - t_i \right).
+\end{aligned}
+\end{equation}
+
+
+
+
+By substituting Equations \ref{eq:time_averaged_temperature} and \ref{eq:time_averaged_graphite_potential} into Equation \ref{2_equation} and differentiating with respect to time, a dynamic version of the semi-empirical model can be expressed as:
+
+
+\begin{equation}
+\label{third_equation}
+\begin{aligned}
+q(t+\Delta t) &= q_0 -  (q_{\text{Loss,Cal}}(t+\Delta t) + q_{\text{Loss,Cyc}}(t+\Delta t)) \\
+q_{\text{Loss,Cal}}(t+\Delta t) &= p_1 \cdot \exp\left(\frac{p_2}{T_\mathrm{avg}}\right) \cdot \exp\left(\frac{p_3 U_a(SOC_\mathrm{avg})}{T_\mathrm{avg}}\right) \cdot (t+\Delta t)^{p_4 }\\
+q_{\text{Loss,Cyc}}(t+\Delta t) &= q_\text{Loss,Cyc}(t) + \Delta t \cdot \frac{dq_{\text{Loss,Cyc}}}{dt}(t)
+\\
+\frac{dq_{\text{Loss,Cyc}}}{dt} (t)&= \left((p_5 + p_6 \cdot (1 - \text{SOC}(t))) + p_7 \cdot C_{\text{rate}}(t)\right) \\&\cdot \left(\exp\left(\frac{p_8}{T_\mathrm{avg}}\right) + \exp\left(-\frac{p_9}{T_\mathrm{avg}}\right)\right) \cdot p_{10} \\&\cdot \left(\int_0^t C_{\text{rate}}(\tau) \, d\tau\right)^{p_{10}-1} \cdot C_{\text{rate}}(t)
+\end{aligned}
+\end{equation}
+where $t$ is the instantaneous value of time, and $\Delta t$ is the sampling period. Using Equation \ref{third_equation}, we can simulate the capacity of $\text{LFP}|\text{Gr}$, $\text{NMC}|\text{Gr~B1}$, and $\text{NMC}|\text{Gr~B2}$ given a vehicle's usage in time-varying C-rate and SOC.
+
+\clearpage
+
+
+\supnote{Full list of Behavioral Features for Vehicle Usage Behavior Clustering }
+\label{sec: list_behavioral_features}
+\begin{multicols}{2}
+\begin{itemize}
+    \item Number of days the vehicle was driven
+    \item Total trips logged
+    \item Cumulative hours in active use
+    \item Cumulative hours parked
+    \item First date in the dataset
+    \item Last date in the dataset
+    \item Total charging sessions
+    \item Number of slow charging sessions
+    \item Number of DC-fast charging sessions
+    \item Average charging power (kW)
+    \item Charging sessions at the home location
+    \item Average SOC before charging (\%)
+    \item Average SOC after charging (\%)
+    \item Time-weighted SOC consumed while driving (\%-h)
+    \item Total hours in active use
+    \item Time-weighted SOC while parked (\%-h)
+    \item Total hours parked
+    \item Average SOC during driving episodes (\%)
+    \item Total SOC percentage points consumed by driving
+    \item Total energy charged (kWh)
+    \item Total calendar days observed
+    \item Hours in use across all days
+    \item Hours parked across all days
+    \item Average SOC consumed per driving day (\%)
+    \item Average daily SOC consumption across all days (\%)
+    \item Average kWh charged per driving day
+    \item Average daily charged energy across all days (kWh)
+    \item Time-weighted mean SOC during use (\%)
+    \item Time-weighted mean SOC while parked (\%)
+    \item Average trips per driving day
+    \item Average charging sessions per driving day
+    \item Average AC-slow charges per driving day
+    \item Average DC-fast charges per driving day
+    \item Total trips recorded
+    \item Behavioral cluster label
+    \item Overall average state-of-charge (\%)
+    \item Mean C-rate during charging
+    \item Mean C-rate during discharge
+    \item Equivalent full cycles accumulated from charging
+    \item Equivalent full cycles accumulated from driving
+\end{itemize}
+\end{multicols}
+
+
+
+\supnote{V2G preferences survey}
+\label{sec: survey}
+
+The minimum state-of-charge used in the V2G simulation was estimated based on a survey conducted by the Toyota Research Institute on people's attitudes and preferences towards V2G. The survey was conducted in June 2024 and administered to a representative sample of US-based new vehicle intenders, who were identified and recruited by the marketing firm Escalent.
+
+The survey was administered to a representative sample of 1,753 participants from Escalent's annual EV Forward cohort who either owned, were actively looking to purchase, or would be open to considering a BEV (68\% of Escalent's EV Forward cohort). At the start of the survey, participants were first asked to rate their familiarity with V2G technology. Next, after a brief explanation of V2G, participants answered a series of questions related to their attitudes, motivators, and barriers towards V2G adoption. The survey took approximately 20 minutes to complete, and participants were paid \$14 for their time.
+
+As a part of this survey, participants were asked the minimum number of miles of range (indicated as a number between 0 and 300 miles) they would need in their vehicle to participate in a V2G program (i.e., ``If you were to participate in a V2G program, what is the minimum miles of range you would always want available in your vehicle?''). Overall, the mean minimum range indicated was 187 miles (95\% CI: 181--192 miles), or 62\% of the 300 mile maximum range in the question. However, participants who owned a BEV (6\% of participants) indicated a lower mean minimum range of 157 miles (95\% CI: 141--174 miles), or 52\% of the 300-mile maximum range in the question. This difference aligns well with research finding that experience driving a BEV lowers range anxiety and perceived minimum mileage needs~\cite{rauh2015understanding, ma2025range}. As such, we chose a minimum SOC of 50\% for our V2G simulations, aligning more closely with the stated needs expressed by people with experience owning a BEV.
+
+\supnote{Supporting Material for Simulations of Battery Degradation under Californian
+Vehicle Usage}
+\label{sec: supporting_material_battery_degradation}
+
+
+\begin{table}[h!]
+\centering
+\caption{To assess if battery design is dominated by calendar aging or cycle aging. Wilcoxon signed-rank test for each battery design, where $H_0$: median (calendar aging)/(total capacity loss) = 0.5, and $H_1$: median (calendar aging)/(total capacity loss) $\ne$ 0.5}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcccc}
+\toprule
+ & \makecell{\textbf{Median} \\ \textbf{(calendar aging)} \\ $\boldsymbol{/(}$\textbf{total capacity loss}$\boldsymbol{)}$}
+ & \makecell{\textbf{95\% CI} \\ \textbf{lower limit}} 
+ & \makecell{\textbf{95\% CI} \\ \textbf{upper limit}} 
+ & \textbf{p value} \\
+\midrule
+LFP$\mid$Gr & 0.395 & 0.380 & 0.410 & 2.89E-28 \\
+NMC$\mid$Gr B1 & 0.794 & 0.785 & 0.803 & 2.14E-53 \\
+NMC$\mid$Gr B2 & 0.591 & 0.573 & 0.609 & 1.82E-17 \\
+\bottomrule
+\end{tabular}
+\label{tab:calendar_vs_cycle}
+\end{table}
+
+
+
+
+
+
+\begin{table}[h!]
+\centering
+\caption{To support for LFP$\mid$Gr: \textit{``Public Charger'' have statistically significantly higher capacity loss than other vehicle usage behaviors} \\
+Mann–Whitney U test \\
+Let $\mu_P$ = mean capacity loss of ``Public Charger'', $\mu_O$ = mean capacity loss of other behavior. \\
+$H_0$: $\mu_P \leq \mu_O$, \quad $H_1$: $\mu_P > \mu_O$}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{$H_1$} & $n_P$ & $n_O$ & $\mu_P (\%)$ & $\mu_O (\%)$ & $U_{\text{stat}}$ & $p_{value}$\\
+\midrule
+$\mu_P > \mu_O$ (vs. ``Daily Charger'') & 55 & 83 & 8.46 & 7.89&	2566	&1.09E-01 \\
+$\mu_P > \mu_O$ (vs. ``BEV 2nd Vehicle'') & 55 & 56 & 8.46 & 5.36&	2669&	1.41E-11 \\
+$\mu_P > \mu_O$ (vs. ``Threshold Charger'') & 55 & 121 & 8.46 & 6.61	&4798	&1.35E-06 \\
+\bottomrule
+\end{tabular}
+\label{tab:LFP|Gr_public_charger}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{To support for NMC$\mid$Gr B1: \textit{``Daily Charger'' have statistically significantly higher capacity loss than other vehicle usage behaviors} \\
+Mann–Whitney U test \\
+Let $\mu_D$ = mean capacity loss of ``Daily Charger'', $\mu_O$ = mean capacity loss of other behavior. \\
+$H_0$: $\mu_D \leq \mu_O$, \quad $H_1$: $\mu_D > \mu_O$}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{$H_1$} & $n_D$ & $n_O$ & $\mu_D (\%)$ & $\mu_O (\%)$ & $U_{\text{stat}}$ &$p_{value}$ \\
+\midrule
+$\mu_D > \mu_O$ (vs. ``Public Charger'') & 83 & 55 & 13.89 & 12.34 & 3654	& 1.24E-09 \\
+$\mu_D > \mu_O$ (vs. ``BEV 2nd Vehicle'') & 83 & 56 & 13.89 & 12.77 & 3277 & 2.15E-05 \\
+$\mu_D > \mu_O$ (vs. ``Threshold Charger'') & 83&	121	&13.89	&12.99	&6976	&1.19E-06 \\
+\bottomrule
+\end{tabular}
+\label{tab:NMC|Grb1_daily_charger}
+\end{table}
+
+
+
+\begin{table}[h!]
+\centering
+\caption{To support for NMC$\mid$Gr B2: \textit{``No single vehicle usage behavior group shows statistically significantly higher capacity loss''} \\
+Mann–Whitney U test \\
+Let $\mu_P$ = mean capacity loss of ``Public Charger'', $\mu_O$ = mean capacity loss of other behavior. \\
+$H_0$: $\mu_P \leq \mu_O$, \quad $H_1$: $\mu_P > \mu_O$}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{$H_1$} & $n_P$ & $n_O$ & $\mu_P (\%)$ & $\mu_O (\%)$ & $U_{\text{stat}}$ & $p_{value}$ \\
+\midrule
+$\mu_P > \mu_O$ (vs. ``Daily Charger'') & 55 & 83 & 6.32 & 6.36 & 2197 & 0.356 \\
+$\mu_P > \mu_O$ (vs. ``BEV 2nd Vehicle'') & 55 & 56 & 6.32 & 4.79 & 2356 & 7.55E-07 \\
+$\mu_P > \mu_O$ (vs. ``Threshold Charger'') & 55 & 121 & 6.32 & 5.70 & 4029 & 0.0126 \\
+\bottomrule
+\end{tabular}
+\label{tab:NMC|Grb2_public_charger}
+\end{table}
+
+\begin{figure} [h!]
+    \centering
+    \includegraphics[width=\linewidth]{figs/battery_degradation_vehicle_clusters_with_error.pdf}
+    \caption{Simulations of the degradation of various battery designs under the usage of each California vehicle usage behavior cluster. Darker colors correspond to calendar aging while lighter colors correspond to cycle aging. Error bars indicate the 95\% CI population values.}
+    \label{fig:battery_degradation_vehicle_clusters_with_error}
+\end{figure}
+
+
+\clearpage
+
+
+\supnote{Linear Regression Analysis Supporting Results in Simulations of Incorporating V2G Strategy to California Vehicle Usage}
+\label{sec: linear_regression_analysis_V2G}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth]{figs/linear_regression_LFP.pdf}
+    \caption{LFP$\mid$Gr linear regression comparing the influence of V2G kWh/year on change in total capacity, change in capacity attributed to cycle aging, change in capacity attributed to calendar aging}
+    \label{fig:linear_regression_LFP}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth]{figs/linear_regression_NMCGrb1.pdf}
+    \caption{NMC$\mid$Gr B1 linear regression comparing the influence of V2G kWh/year on change in total capacity, change in capacity attributed to cycle aging, change in capacity attributed to calendar aging}
+    \label{fig:linear_regression_NMCGrb1}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\linewidth]{figs/linear_regression_NMCGrb2.pdf}
+    \caption{NMC$\mid$Gr B2 linear regression comparing the influence of V2G kWh/year on change in total capacity, change in capacity attributed to cycle aging, change in capacity attributed to calendar aging}
+    \label{fig:linear_regression_NMCGrb2}
+\end{figure}
+
+
+\clearpage
+
+%%===========================================================================================%%
+%% If you are submitting to one of the Nature Portfolio journals, using the eJP submission   %%
+%% system, please include the references within the manuscript file itself. You may do this  %%
+%% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
+%% file, and delete the associated \verb+\bibliography+ commands.                            %%
+%%===========================================================================================%%
+
+\bibliography{bibliography_2-23}% common bib file
+%% if required, the content of .bbl file can be included here once bbl is generated
+%%\input sn-article.bbl
+
+\end{document}
